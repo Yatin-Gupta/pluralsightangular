@@ -4,21 +4,26 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
-import {ConvertToSpacesPipe} from './convert-to-spaces.pipe';
-import { ProductListFilterPipe } from './products/product-list-filter.pipe';
+import {ConvertToSpacesPipe} from './products/shared/convert-to-spaces.pipe';
+import { ProductListFilterPipe } from './products/shared/product-list-filter.pipe';
+import { StarComponent } from './products/shared/star.component';
+import { ProductService } from './products/product.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    ProductListFilterPipe
+    ProductListFilterPipe,
+    StarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
