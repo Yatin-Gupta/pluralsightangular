@@ -28,6 +28,7 @@
                         <th>Available</th>
                         <th>Price</th>
                         <th>5 Star Rating</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@
                         <td>{{ product["releaseDate"] }}</td>
                         <td>{{ product["price"] | currency:'USD':'symbol':'1.2-2' | lowercase }}</td>
                         <td><star-rating [rating]='product.starRating' (ratingNotification)='onRatingNotification($event)' ></star-rating></td>
+                        <td><a href="product/1">View Product</a></td>
                     </tr>
                 </tbody>
             </table>
