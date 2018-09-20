@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './product.service';
 import { IProduct } from './product.interface';
 
@@ -14,17 +14,33 @@ export class ProductDetailComponent implements OnInit {
   product:IProduct;
   errorMessage:any;
 
-  constructor(private route:ActivatedRoute, private productService:ProductService) {
+  constructor(private route:ActivatedRoute, private router:Router, private productService:ProductService) {
   }
 
   ngOnInit() {
-    this.productService.getProduct(this.route.snapshot.paramMap.get('id')).subscribe(
+    let prodId = +this.route.snapshot.paramMap.get('id');
+    this.productService.getProduct(prodId).subscribe(
       product => { 
         this.product = product;
-        console.log(product);
       },
-      error => this.errorMessage = <any>error
+      error => { 
+        this.errorMessage = <any>error
+      }
     );
+    // this.product = {
+    //   "productId": 2,
+    //   "productName": "Garden Cart",
+    //   "productCode": "GDN-0023",
+    //   "releaseDate": "March 18, 2016",
+    //   "description": "15 gallon capacity rolling garden cart",
+    //   "price": 32.99,
+    //   "starRating": 4.2,
+    //   "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+    // };
+  }
+
+  onBack() {
+    this.router.navigate(['/products']);
   }
 
 }

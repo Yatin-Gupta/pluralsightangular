@@ -12,6 +12,7 @@ import { ProductService } from './products/product.service';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
+import { ProductDetailGuard } from './products/product-detail.guard';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'products/:id',
+        canActivate: [ ProductDetailGuard ],
         component: ProductDetailComponent
       },
       {
@@ -45,7 +47,7 @@ import { RouterModule } from '@angular/router';
         redirectTo: 'welcome',
         pathMatch: 'full'
       }
-    ], {useHash: true})
+    ])
   ],
   providers: [
     ProductService
